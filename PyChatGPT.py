@@ -1,5 +1,4 @@
 import openai
-import os
 
 ROLE = "Sei ein Mitglied vom Chaos Computer Club e.V.!"
 MODEL = "gpt-3.5-turbo"
