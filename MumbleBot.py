@@ -32,9 +32,9 @@ class GPTMumbleBot:
         self.gpt_response = self.openai_conn.human_request(user_request)
         self.mumble_conn.channels.find_by_name("MumbleGeramble").send_text_message(self.gpt_response)
 
+
 if __name__ == "__main__":
 
     MumbleBot = GPTMumbleBot()
-
     while MumbleBot.mumble_conn.is_alive() and not MumbleBot.mumble_conn.exit:
         time.sleep(2)
