@@ -10,9 +10,13 @@ class ChatGPT:
 
     def human_request(self, request):
         self.dialog.append({"role": "user", "content":request})
-        gpt_response = openai.ChatCompletion.create(model=MODEL, messages=self.dialog)
 
-        assistant_choice = gpt_response.choices[0].message.content
+        try:
+            gpt_response = openai.ChatCompletion.create(model=MODEL, messages=self.dialog)
+            assistant_choice = gpt_response.choices[0].message.content
+        except openai.error.RateLimitError as overload:
+            assistant_choice = "OpenAI Server Overloaded!\n" + str(overload)
+
         self.dialog.append({"role": "assistant", "content": assistant_choice})
 
         return assistant_choice
