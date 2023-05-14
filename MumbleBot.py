@@ -41,7 +41,7 @@ class GPTMumbleBot:
 
     def sendAI_answer(self, user_request):
         self.gpt_response = self.openai_conn.human_request(user_request)
-        self.mumble_conn.channels.find_by_name("MumbleGeramble").send_text_message(self.gpt_response)
+        self.mumble_conn.channels.find_by_name(os.environ["MumbleChannelName"]).send_text_message(self.gpt_response)
         self.msg_rcvd_event.clear()
 
     def wait_for_request(self):
